@@ -27,5 +27,13 @@ namespace FileIO_UnitTest {
                 MessageBox.Show("Data was saved");
             }
         }
+
+        private void btnUploadData_Click(object sender, EventArgs e) {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() == DialogResult.OK) {
+                tbxUserInput.Text = 
+                    File.OpenText(dialog.FileName).ReadToEnd();
+            }
+        }
     }
 }
