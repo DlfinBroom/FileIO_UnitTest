@@ -55,5 +55,29 @@ namespace FileIO_UnitTest {
             }
             tbxUserInput.Text = newData;
         }
+
+        private void btnDecryptText_Click(object sender, EventArgs e)
+        {
+            string data = tbxUserInput.Text;
+
+            //Array of type string with numbers that represent on character a piece
+            string[] bCharacters = data.Split();
+
+            List<byte> list = new List<byte>();
+            foreach(string elem in bCharacters)
+            {
+                list.Add(Convert.ToByte(elem));
+            }
+
+            byte[] bArray = new byte[list.Count];
+            int i = 0;
+            foreach(byte character in list)
+            {
+                bArray[i] = character;
+                i++;
+            }
+            string newData = Encoding.ASCII.GetString(bArray);
+            tbxUserInput.Text = newData;
+        }
     }
 }
