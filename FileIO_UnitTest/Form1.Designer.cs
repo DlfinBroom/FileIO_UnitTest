@@ -55,6 +55,7 @@
             this.btnUploadData.TabIndex = 2;
             this.btnUploadData.Text = "Upload txt File";
             this.btnUploadData.UseVisualStyleBackColor = true;
+            this.btnUploadData.Click += new System.EventHandler(this.btnUploadData_Click);
             // 
             // btnEncryptText
             // 
