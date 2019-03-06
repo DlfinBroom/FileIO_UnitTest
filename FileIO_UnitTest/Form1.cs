@@ -35,5 +35,25 @@ namespace FileIO_UnitTest {
                     File.OpenText(dialog.FileName).ReadToEnd();
             }
         }
+
+        private void btnEncryptText_Click(object sender, EventArgs e)
+        {
+            string data = tbxUserInput.Text;
+
+            byte[] b = Encoding.ASCII.GetBytes(data);
+            string newData = "";
+            foreach ( byte bElem in b)
+            {
+                if ( newData.Equals(""))
+                {
+                    newData += Convert.ToString(bElem);
+                }
+                else
+                {
+                    newData += " " + Convert.ToString(bElem);
+                }
+            }
+            tbxUserInput.Text = newData;
+        }
     }
 }
