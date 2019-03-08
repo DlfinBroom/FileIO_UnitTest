@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 namespace FileIO_UnitTest.Tests {
     [TestClass()]
     public class BookTests {
-
-        // Made by Trystin St.Louis
-        //  |
-        //  V
         [TestMethod()]
         public void BookTitle_LongEntry() {
             try {
@@ -73,9 +69,73 @@ namespace FileIO_UnitTest.Tests {
             }
             catch (ArgumentException ae) {}
         }
-        //  A
-        //  |
 
-        // Not made by Trystin St.Louis
+        [TestMethod()]
+        public void BookPrice_SmallEntry() {
+            try {
+                Book boo = new Book("CoolBook",
+                    "Author", "0123456789", 0);
+                Assert.Fail();
+            }
+            catch (ArgumentException ae) { }
+        }
+
+        [TestMethod()]
+        public void BookPrice_LargeEntry() {
+            try {
+                Book boo = new Book("CoolBook",
+                    "Author", "0123456789", 999999999);
+                Assert.Fail();
+            }
+            catch (ArgumentException ae) { }
+        }
+
+        [TestMethod()]
+        public void BookPrice_IncreasePrice() {
+            Book boo = new Book(5.00);
+
+            double addNum = 10.00;
+            double Total = boo.Price + addNum;
+
+            boo.IncreasePrice(addNum);
+
+            Assert.IsTrue(Total == boo.Price);
+        }
+
+        [TestMethod()]
+        public void BookPrice_IncreasePrice_2() {
+            Book boo = new Book(25.00);
+
+            double addNum = 0.25;
+            double Total = boo.Price + addNum;
+
+            boo.IncreasePrice(addNum);
+
+            Assert.IsTrue(Total == boo.Price);
+        }
+
+        [TestMethod()]
+        public void BookPrice_DecreasePrice_above0() {
+            Book boo = new Book(10.00);
+
+            double subNum = 5.00;
+            double Total = boo.Price - subNum;
+
+            boo.DecreasePrice(subNum);
+
+            Assert.IsTrue(Total == boo.Price);
+        }
+
+        [TestMethod()]
+        public void BookPrice_DecreasePrice_bellow0() {
+            Book boo = new Book(10.00);
+
+            double subNum = 20.00;
+            double Total = 0;
+
+            boo.DecreasePrice(subNum);
+
+            Assert.IsTrue(Total == boo.Price);
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace FileIO_UnitTest {
             if(isbn.Length != 10) {
                 throw new ArgumentException();
             }
-            if(pri <= 0 || pri > 1000000) {
+            if(pri <= 0.0 || pri > 1000000.0) {
                 throw new ArgumentException();
             }
             Title = tit;
@@ -35,6 +35,26 @@ namespace FileIO_UnitTest {
             Publisher = "John Doe";
             Price = 0.0;
             ISBN = isbn;
+        }
+        public Book(double pri) {
+            Title = "Title";
+            Author = "Author";
+            Publisher = "John Doe";
+            Price = pri;
+            ISBN = "1234567890";
+        }
+
+        public void IncreasePrice(double amount) {
+            Price += amount;
+        }
+
+        public void DecreasePrice(double amount) {
+            if(Price - amount <= 0) {
+                Price = 0;
+            }
+            else {
+                Price -= amount;
+            }
         }
     }
 }
